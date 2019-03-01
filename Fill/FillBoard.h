@@ -35,9 +35,11 @@ public:
 	size_t getNRows() const;
 	size_t getNCols() const;
 
+	bool isSolved() const;
+
 	void print() const;
 
-private:
+protected:
 	vector<vector<Space>> board;
 };
 
