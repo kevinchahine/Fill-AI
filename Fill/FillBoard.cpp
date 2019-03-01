@@ -62,3 +62,20 @@ FillBoard::FillBoard(const FillBoard & fillBoard)
 }
 
 FillBoard::~FillBoard() {}
+
+void FillBoard::print(size_t indent) const
+{
+	size_t nRows = this->board.size();
+	size_t nCols = (nRows > 0 ? this->board[0].size() : 0);
+
+	for (size_t r = 0; r < nRows; r++) {
+		// Indent
+		cout << setw(indent) << (char) 0;
+
+		for (size_t c = 0; c < nCols; c++) {
+			cout << (char) this->board[r][c];
+		}
+		cout << endl;
+	}
+	cout << endl;
+}

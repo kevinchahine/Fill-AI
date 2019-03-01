@@ -37,7 +37,7 @@ public:
 
 	bool isSolved() const;
 
-	void print() const;
+	void print(size_t indent = 0) const;
 
 protected:
 	vector<vector<Space>> board;
