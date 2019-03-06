@@ -63,6 +63,49 @@ FillBoard::FillBoard(const FillBoard & fillBoard)
 
 FillBoard::~FillBoard() {}
 
+void FillBoard::setSpaceAs(size_t row, size_t col, Space val)
+{
+	board.at(row).at(col) = val;
+}
+
+void FillBoard::resize(size_t nRows, size_t nCols)
+{
+	board.resize(nRows);
+
+	for (auto row : board) {
+		row.resize(nCols, Space::Empty);
+	}
+}
+
+FillBoard::Space FillBoard::getSpace(size_t row, size_t col) const
+{
+	return board.at(row).at(col);
+}
+
+size_t FillBoard::getNRows() const
+{
+	return board.size();
+}
+
+size_t FillBoard::getNCols() const
+{
+	return board.front().size();
+}
+
+bool FillBoard::isSolved() const
+{
+	// Is every space filled (meaning no empty spaces)?
+	for (auto row : board) {
+		for (auto val : row) {
+			if (val != Space::Empty) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
 void FillBoard::print(size_t indent) const
 {
 	// Remember the fill char (and set the new one at the same time)
