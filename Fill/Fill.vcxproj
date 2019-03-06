@@ -117,12 +117,14 @@
   <ItemGroup>
     <ClCompile Include="FillBoard.cpp" />
     <ClCompile Include="FillBoard.Test.cpp" />
+    <ClCompile Include="FillPath.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ASCII\ASCII\ASCII.h" />
     <ClInclude Include="FillBoard.h" />
     <ClInclude Include="FillBoard.Test.h" />
+    <ClInclude Include="FillPath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

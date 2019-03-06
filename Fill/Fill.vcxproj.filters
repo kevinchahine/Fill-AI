@@ -27,6 +27,9 @@
     <ClCompile Include="FillBoard.Test.cpp">
       <Filter>Test</Filter>
     </ClCompile>
+    <ClCompile Include="FillPath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FillBoard.h">
@@ -36,6 +39,9 @@
       <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\ASCII\ASCII\ASCII.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FillPath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
