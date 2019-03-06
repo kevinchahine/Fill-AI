@@ -4,6 +4,8 @@
 #include <iomanip>
 #include <vector>
 
+#include "E:\Documents\Programming\C++\ASCII\ASCII\ASCII.h"
+
 using namespace std;
 
 class FillBoard

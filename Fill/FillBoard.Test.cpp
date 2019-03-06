@@ -13,7 +13,24 @@ bool FillBoard_Test::init()
 	FillBoard b3(board);	// full
 	FillBoard b4(b3);		// copy
 
+	cout << "---b1---" << endl;
 	b1.print();
 
-	return false;
+	cout << "---b2---" << endl;
+	b2.print();
+
+	cout << "---b3---" << endl;
+	b3.print();
+
+	cout << "---b4---" << endl;
+	b4.print();
+	
+	return true;
+}
+
+bool FillBoard_Test::full()
+{
+	bool constructor = FillBoard_Test::init();
+
+	return constructor;
 }

@@ -11,4 +11,5 @@ using namespace std;
 namespace FillBoard_Test {
 	bool init();
 	
+	bool full();
 }

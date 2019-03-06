@@ -120,6 +120,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\ASCII\ASCII\ASCII.h" />
     <ClInclude Include="FillBoard.h" />
     <ClInclude Include="FillBoard.Test.h" />
   </ItemGroup>

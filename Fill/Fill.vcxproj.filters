@@ -35,5 +35,8 @@
     <ClInclude Include="FillBoard.Test.h">
       <Filter>Test</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\ASCII\ASCII\ASCII.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

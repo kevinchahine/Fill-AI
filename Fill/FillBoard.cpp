@@ -65,17 +65,36 @@ FillBoard::~FillBoard() {}
 
 void FillBoard::print(size_t indent) const
 {
+	// Remember the fill char (and set the new one at the same time)
+	char prevFillCh = cout.fill(ASCII::lines[(ASCII::HORIZONTAL << 4) | ASCII::HORIZONTAL]);
+	
 	size_t nRows = this->board.size();
 	size_t nCols = (nRows > 0 ? this->board[0].size() : 0);
 
+	// Print Top Boarder
+	
+	cout << setw(indent) << ASCII::lines[(ASCII::DR << 4) | ASCII::DR]
+		<< setw(nCols + 1)
+		<< ASCII::lines[(ASCII::DL << 4) | ASCII::DL]
+		<< endl;
+	
 	for (size_t r = 0; r < nRows; r++) {
 		// Indent
-		cout << setw(indent) << (char) 0;
+		cout << setw(indent) 
+			<< ASCII::lines[(ASCII::VERTICAL << 4) | ASCII::VERTICAL];
 
 		for (size_t c = 0; c < nCols; c++) {
-			cout << (char) this->board[r][c];
+			cout << (char)this->board[r][c];
 		}
-		cout << endl;
+		cout << ASCII::lines[(ASCII::VERTICAL << 4) | ASCII::VERTICAL]
+			<< endl;
 	}
-	cout << endl;
+
+	cout << setfill(ASCII::lines[(ASCII::HORIZONTAL << 4) | ASCII::HORIZONTAL])
+		<< setw(indent) << ASCII::lines[(ASCII::UR << 4) | ASCII::UR]
+		<< setw(nCols + 1)
+		<< ASCII::lines[(ASCII::UL << 4) | ASCII::UL] << endl;
+	
+	// Restore the previous fill character
+	cout.fill(prevFillCh);
 }
