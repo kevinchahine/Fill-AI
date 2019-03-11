@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <sstream>
 
 #include "E:\Documents\Programming\C++\ASCII\ASCII\ASCII.h"
 
@@ -26,6 +27,8 @@ public:
 	void moveLeft();
 
 	pair<size_t, size_t> moveBack();
+
+	stringstream toStream() const;
 
 protected:
 	// pair<row, col>

@@ -118,6 +118,7 @@
     <ClCompile Include="FillBoard.cpp" />
     <ClCompile Include="FillBoard.Test.cpp" />
     <ClCompile Include="FillPath.cpp" />
+    <ClCompile Include="FillPath.Test.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +126,7 @@
     <ClInclude Include="FillBoard.h" />
     <ClInclude Include="FillBoard.Test.h" />
     <ClInclude Include="FillPath.h" />
+    <ClInclude Include="FillPath.Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,7 +8,7 @@ FillPath::FillPath(pair<size_t, size_t> start, size_t initialCapacity)
 
 FillPath::FillPath(const vector<pair<size_t, size_t>>& path)
 {
-	this->path.resize(path.size());
+	this->path.reserve(path.capacity());
 
 	for (auto p : path) {
 		this->path.push_back(p);
@@ -17,7 +17,7 @@ FillPath::FillPath(const vector<pair<size_t, size_t>>& path)
 
 FillPath::FillPath(const FillPath & fillPath)
 {
-	this->path.reserve(fillPath.path.size());
+	this->path.reserve(fillPath.path.capacity());
 
 	for (auto p : fillPath.path) {
 		this->path.push_back(p);
@@ -31,7 +31,7 @@ char FillPath::getChar(size_t pos) const
 	// ------------ Is this the 1st char? -----------------
 	if (pos == 0) {
 		if (path.size() == 1) {
-			return 0xF9;
+			return 0xF9;	// Dot char
 		}
 
 		pair<size_t, size_t> curr = path.at(0);
@@ -42,6 +42,8 @@ char FillPath::getChar(size_t pos) const
 			return ASCII::HORIZONTAL;
 		}
 		else {
+			char c = ASCII::VERTICAL;
+			cout << '\t' << c << endl;
 			return ASCII::VERTICAL;
 		}
 		return 0xA8;
@@ -80,6 +82,16 @@ char FillPath::getChar(size_t pos) const
 		bool left =
 			(prev.second == curr.second - 1) ||
 			(next.second == curr.second - 1);
+
+		uint8_t temp =
+			(up ? ASCII::UP : 0x00) |
+			(down ? ASCII::DOWN : 0x00) |
+			(left ? ASCII::LEFT : 0x00) |
+			(right ? ASCII::RIGHT : 0x00);
+
+		return ASCII::lines[
+				temp
+		];
 	}
 
 	return 0xA8;
@@ -132,4 +144,18 @@ pair<size_t, size_t> FillPath::moveBack()
 	pair<size_t, size_t> temp = path.back();
 	path.pop_back();
 	return temp;
+}
+
+stringstream FillPath::toStream() const
+{
+	stringstream ss;
+
+	for (size_t i = 0; i < path.size(); i++) {
+		pair<size_t, size_t> coord = getCoordinate(i);
+
+		ss << coord.first << ", " << coord.second
+			<< ' ' << getChar(i) << endl;
+	}
+
+	return ss;
 }
