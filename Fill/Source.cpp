@@ -14,7 +14,7 @@ int main(int argc, char ** argv)
 {
 	FillBoard_Test::init();
 	FillPath_Test::full();
-
+	///FillGame_Test::full();
 
 	system("pause");
 	return 0;

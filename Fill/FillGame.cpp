@@ -20,26 +20,41 @@ FillGame::FillGame(const FillGame & fillGame) :
 
 FillGame::~FillGame() {}
 
-void FillGame::moveUp()
+coord_t FillGame::moveUp()
 {
-	path.moveUp();
+	coord_t temp = path.moveUp();
+
+	///board.setSpaceAs(temp, path.getChar())
+
+	return temp;
 }
 
-void FillGame::moveDown()
+coord_t FillGame::moveDown()
 {
+	coord_t temp = path.moveDown();
+
+	return temp;
 }
 
-void FillGame::moveRight()
+coord_t FillGame::moveRight()
 {
+	coord_t temp = path.moveRight();
+
+	return temp;
 }
 
-void FillGame::moveLeft()
+coord_t FillGame::moveLeft()
 {
+	coord_t temp = path.moveLeft();
+
+	return temp;
 }
 
 coord_t FillGame::moveBack()
 {
-	return coord_t();
+	coord_t temp = path.moveBack();
+
+	return temp;
 }
 
 void FillGame::print() const

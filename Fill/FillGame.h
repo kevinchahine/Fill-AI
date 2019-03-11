@@ -13,10 +13,10 @@ public:
 	FillGame(const FillGame & fillGame);
 	~FillGame();
 
-	void moveUp();
-	void moveDown();
-	void moveRight();
-	void moveLeft();
+	coord_t moveUp();
+	coord_t moveDown();
+	coord_t moveRight();
+	coord_t moveLeft();
 
 	coord_t moveBack();
 

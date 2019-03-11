@@ -107,36 +107,44 @@ size_t FillPath::size() const
 	return path.size();
 }
 
-void FillPath::moveUp()
+coord_t FillPath::moveUp()
 {
 	coord_t temp = path.back();
 	temp.first--;
 
 	path.push_back(temp);
+
+	return temp;
 }
 
-void FillPath::moveDown()
+coord_t FillPath::moveDown()
 {
 	coord_t temp = path.back();
 	temp.first++;
 
 	path.push_back(temp);
+
+	return temp;
 }
 
-void FillPath::moveRight()
+coord_t FillPath::moveRight()
 {
 	coord_t temp = path.back();
 	temp.second++;
 
 	path.push_back(temp);
+
+	return temp;
 }
 
-void FillPath::moveLeft()
+coord_t FillPath::moveLeft()
 {
 	coord_t temp = path.back();
 	temp.second--;
 
 	path.push_back(temp);
+
+	return temp;
 }
 
 coord_t FillPath::moveBack()
