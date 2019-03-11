@@ -1,12 +1,12 @@
 #include "FillPath.h"
 
-FillPath::FillPath(pair<size_t, size_t> start, size_t initialCapacity)
+FillPath::FillPath(coord_t start, size_t initialCapacity)
 {
 	path.reserve(initialCapacity);
 	path.push_back(start);
 }
 
-FillPath::FillPath(const vector<pair<size_t, size_t>>& path)
+FillPath::FillPath(const vector<coord_t>& path)
 {
 	this->path.reserve(path.capacity());
 
@@ -34,8 +34,8 @@ char FillPath::getChar(size_t pos) const
 			return 0xF9;	// Dot char
 		}
 
-		pair<size_t, size_t> curr = path.at(0);
-		pair<size_t, size_t> next = path.at(1);
+		coord_t curr = path.at(0);
+		coord_t next = path.at(1);
 
 		// Is it horizontal?
 		if (curr.first == next.first) {
@@ -51,8 +51,8 @@ char FillPath::getChar(size_t pos) const
 
 	// ------------ Is this the last char -----------------
 	if (pos == path.size() - 1) {
-		pair<size_t, size_t> prev = path.at(path.size() - 2);
-		pair<size_t, size_t> curr = path.at(path.size() - 1);
+		coord_t prev = path.at(path.size() - 2);
+		coord_t curr = path.at(path.size() - 1);
 
 		// Is it horizontal?
 		if (prev.first == curr.first) {
@@ -66,9 +66,9 @@ char FillPath::getChar(size_t pos) const
 
 	// ------------ Is this in the middle -----------------
 	if (pos < path.size() - 1) {
-		pair<size_t, size_t> prev = path.at(pos - 1);
-		pair<size_t, size_t> curr = path.at(pos);
-		pair<size_t, size_t> next = path.at(pos + 1);
+		coord_t prev = path.at(pos - 1);
+		coord_t curr = path.at(pos);
+		coord_t next = path.at(pos + 1);
 
 		bool up =
 			(prev.first == curr.first - 1) ||
@@ -97,7 +97,7 @@ char FillPath::getChar(size_t pos) const
 	return 0xA8;
 }
 
-const pair<size_t, size_t>& FillPath::getCoordinate(size_t pos) const
+const coord_t& FillPath::getCoordinate(size_t pos) const
 {
 	return path.at(pos);
 }
@@ -109,7 +109,7 @@ size_t FillPath::size() const
 
 void FillPath::moveUp()
 {
-	pair<size_t, size_t> temp = path.back();
+	coord_t temp = path.back();
 	temp.first--;
 
 	path.push_back(temp);
@@ -117,7 +117,7 @@ void FillPath::moveUp()
 
 void FillPath::moveDown()
 {
-	pair<size_t, size_t> temp = path.back();
+	coord_t temp = path.back();
 	temp.first++;
 
 	path.push_back(temp);
@@ -125,7 +125,7 @@ void FillPath::moveDown()
 
 void FillPath::moveRight()
 {
-	pair<size_t, size_t> temp = path.back();
+	coord_t temp = path.back();
 	temp.second++;
 
 	path.push_back(temp);
@@ -133,15 +133,15 @@ void FillPath::moveRight()
 
 void FillPath::moveLeft()
 {
-	pair<size_t, size_t> temp = path.back();
+	coord_t temp = path.back();
 	temp.second--;
 
 	path.push_back(temp);
 }
 
-pair<size_t, size_t> FillPath::moveBack()
+coord_t FillPath::moveBack()
 {
-	pair<size_t, size_t> temp = path.back();
+	coord_t temp = path.back();
 	path.pop_back();
 	return temp;
 }
@@ -151,7 +151,7 @@ stringstream FillPath::toStream() const
 	stringstream ss;
 
 	for (size_t i = 0; i < path.size(); i++) {
-		pair<size_t, size_t> coord = getCoordinate(i);
+		coord_t coord = getCoordinate(i);
 
 		ss << coord.first << ", " << coord.second
 			<< ' ' << getChar(i) << endl;

@@ -9,16 +9,18 @@
 
 using namespace std;
 
+typedef pair<size_t, size_t> coord_t;
+
 class FillPath
 {
 public:
-	FillPath(pair<size_t, size_t> start, size_t initialCapacity = 16);
-	FillPath(const vector<pair<size_t, size_t>> & path);
+	FillPath(coord_t start, size_t initialCapacity = 16);
+	FillPath(const vector<coord_t> & path);
 	FillPath(const FillPath & fillPath);
 	~FillPath();
 	
 	char getChar(size_t pos) const;
-	const pair<size_t, size_t> & getCoordinate(size_t pos) const;
+	const coord_t & getCoordinate(size_t pos) const;
 	size_t size() const;
 
 	void moveUp();
@@ -26,12 +28,12 @@ public:
 	void moveRight();
 	void moveLeft();
 
-	pair<size_t, size_t> moveBack();
+	coord_t moveBack();
 
 	stringstream toStream() const;
 
 protected:
 	// pair<row, col>
-	vector<pair<size_t, size_t>> path;
+	vector<coord_t> path;
 };
 

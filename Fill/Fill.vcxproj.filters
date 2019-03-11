@@ -33,6 +33,9 @@
     <ClCompile Include="FillPath.Test.cpp">
       <Filter>Test</Filter>
     </ClCompile>
+    <ClCompile Include="FillGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FillBoard.h">
@@ -49,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="FillPath.Test.h">
       <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="FillGame.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

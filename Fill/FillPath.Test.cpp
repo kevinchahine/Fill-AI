@@ -2,12 +2,12 @@
 
 bool FillPath_Test::init()
 {
-	vector<pair<size_t, size_t>> p(16);
-	p.push_back(pair<size_t, size_t>(5, 6));
-	p.push_back(pair<size_t, size_t>(5, 7));
-	p.push_back(pair<size_t, size_t>(4, 7));
+	vector<coord_t> p(16);
+	p.push_back(coord_t(5, 6));
+	p.push_back(coord_t(5, 7));
+	p.push_back(coord_t(4, 7));
 
-	FillPath path(pair<size_t, size_t>(4, 4));
+	FillPath path(coord_t(4, 4));
 	FillPath pathFull(p);
 	FillPath pathCopy(path);
 
@@ -16,7 +16,7 @@ bool FillPath_Test::init()
 
 bool FillPath_Test::move()
 {
-	FillPath path(pair<size_t, size_t>(3, 3));
+	FillPath path(coord_t(3, 3));
 
 	path.moveDown();
 	path.moveRight();
