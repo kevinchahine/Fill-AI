@@ -63,9 +63,9 @@ FillBoard::FillBoard(const FillBoard & fillBoard)
 
 FillBoard::~FillBoard() {}
 
-void FillBoard::setSpaceAs(size_t row, size_t col, Space val)
+void FillBoard::setSpaceAs(coord_t coord, Space val)
 {
-	board.at(row).at(col) = val;
+	board.at(coord.first).at(coord.second) = val;
 }
 
 void FillBoard::resize(size_t nRows, size_t nCols)
@@ -77,9 +77,9 @@ void FillBoard::resize(size_t nRows, size_t nCols)
 	}
 }
 
-FillBoard::Space FillBoard::getSpace(size_t row, size_t col) const
+FillBoard::Space FillBoard::getSpace(coord_t coord) const
 {
-	return board.at(row).at(col);
+	return board.at(coord.first).at(coord.second);
 }
 
 size_t FillBoard::getNRows() const

@@ -4,6 +4,8 @@
 #include <iomanip>
 #include <vector>
 
+#include "FillPath.h"
+
 #include "E:\Documents\Programming\C++\ASCII\ASCII\ASCII.h"
 
 using namespace std;
@@ -30,10 +32,10 @@ public:
 
 	// Sets a space on the board to one of a set of possible values
 	// See FillBoard::Space
-	void setSpaceAs(size_t row, size_t col, Space val);
+	void setSpaceAs(coord_t coord, Space val);
 	void resize(size_t nRows, size_t nCols);
 
-	Space getSpace(size_t row, size_t col) const;
+	Space getSpace(coord_t coord) const;
 	size_t getNRows() const;
 	size_t getNCols() const;
 
