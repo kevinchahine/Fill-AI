@@ -118,6 +118,7 @@
     <ClCompile Include="FillBoard.cpp" />
     <ClCompile Include="FillBoard.Test.cpp" />
     <ClCompile Include="FillGame.cpp" />
+    <ClCompile Include="FillGame.Test.cpp" />
     <ClCompile Include="FillPath.cpp" />
     <ClCompile Include="FillPath.Test.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="FillBoard.h" />
     <ClInclude Include="FillBoard.Test.h" />
     <ClInclude Include="FillGame.h" />
+    <ClInclude Include="FillGame.Test.h" />
     <ClInclude Include="FillPath.h" />
     <ClInclude Include="FillPath.Test.h" />
   </ItemGroup>

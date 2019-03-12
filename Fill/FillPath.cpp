@@ -97,9 +97,19 @@ char FillPath::getChar(size_t pos) const
 	return 0xA8;
 }
 
-const coord_t& FillPath::getCoordinate(size_t pos) const
+char FillPath::getChar_back() const
+{
+	return getChar(path.size() - 1);
+}
+
+const coord_t & FillPath::getCoordinate(size_t pos) const
 {
 	return path.at(pos);
+}
+
+const coord_t & FillPath::getCoordinate_back() const
+{
+	return path.back();
 }
 
 size_t FillPath::size() const

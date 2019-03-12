@@ -36,6 +36,9 @@
     <ClCompile Include="FillGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FillGame.Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FillBoard.h">
@@ -54,6 +57,9 @@
       <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="FillGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FillGame.Test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

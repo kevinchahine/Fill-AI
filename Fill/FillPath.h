@@ -20,7 +20,9 @@ public:
 	~FillPath();
 	
 	char getChar(size_t pos) const;
+	char getChar_back() const;
 	const coord_t & getCoordinate(size_t pos) const;
+	const coord_t & getCoordinate_back() const;
 	size_t size() const;
 
 	coord_t moveUp();

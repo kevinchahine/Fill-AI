@@ -7,14 +7,15 @@
 
 #include "FillBoard.Test.h"
 #include "FillPath.Test.h"
+#include "FillGame.Test.h"
 
 using namespace std;
 
 int main(int argc, char ** argv)
 {
-	FillBoard_Test::init();
-	FillPath_Test::full();
-	///FillGame_Test::full();
+	///FillBoard_Test::init();
+	///FillPath_Test::full();
+	FillGame_Test::full();
 
 	system("pause");
 	return 0;
