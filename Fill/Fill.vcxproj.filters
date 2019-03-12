@@ -37,7 +37,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FillGame.Test.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -60,7 +60,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FillGame.Test.h">
-      <Filter>Header Files</Filter>
+      <Filter>Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
