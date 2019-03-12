@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -33,6 +34,9 @@ public:
 	coord_t moveBack();
 
 	stringstream toStream() const;
+
+private:
+	bool isInPath(coord_t location) const;
 
 protected:
 	// pair<row, col>

@@ -42,15 +42,13 @@ char FillPath::getChar(size_t pos) const
 			return ASCII::HORIZONTAL;
 		}
 		else {
-			char c = ASCII::VERTICAL;
-			cout << '\t' << c << endl;
 			return ASCII::VERTICAL;
 		}
 		return 0xA8;
 	}
 
 	// ------------ Is this the last char -----------------
-	if (pos == path.size() - 1) {
+	else if (pos == path.size() - 1) {
 		coord_t prev = path.at(path.size() - 2);
 		coord_t curr = path.at(path.size() - 1);
 
@@ -65,7 +63,7 @@ char FillPath::getChar(size_t pos) const
 	}
 
 	// ------------ Is this in the middle -----------------
-	if (pos < path.size() - 1) {
+	else {
 		coord_t prev = path.at(pos - 1);
 		coord_t curr = path.at(pos);
 		coord_t next = path.at(pos + 1);
@@ -90,11 +88,9 @@ char FillPath::getChar(size_t pos) const
 			(right ? ASCII::RIGHT : 0x00);
 
 		return ASCII::lines[
-				temp
+			temp
 		];
 	}
-
-	return 0xA8;
 }
 
 char FillPath::getChar_back() const
@@ -176,4 +172,15 @@ stringstream FillPath::toStream() const
 	}
 
 	return ss;
+}
+
+bool FillPath::isInPath(coord_t location) const
+{
+	for (coord_t p : path) {
+		if (p == location) {
+			return true;
+		}
+	}
+	
+	return false;
 }

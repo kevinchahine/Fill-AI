@@ -109,34 +109,35 @@ bool FillBoard::isSolved() const
 void FillBoard::print(size_t indent) const
 {
 	// Remember the fill char (and set the new one at the same time)
-	char prevFillCh = cout.fill(ASCII::lines[(ASCII::HORIZONTAL << 4) | ASCII::HORIZONTAL]);
+	char prevFillCh = cout.fill(ASCII::lines[ASCII::HORIZONTAL_DOUBLE]);
 	
 	size_t nRows = this->board.size();
 	size_t nCols = (nRows > 0 ? this->board[0].size() : 0);
 
 	// Print Top Boarder
 	
-	cout << setw(indent) << ASCII::lines[(ASCII::DR << 4) | ASCII::DR]
+	cout << setw(indent) << ASCII::lines[ASCII::DOWN_DOUBLE | ASCII::RIGHT_DOUBLE]
 		<< setw(nCols + 1)
-		<< ASCII::lines[(ASCII::DL << 4) | ASCII::DL]
+		<< ASCII::lines[ASCII::DOWN_DOUBLE | ASCII::LEFT_DOUBLE]
 		<< endl;
 	
 	for (size_t r = 0; r < nRows; r++) {
 		// Indent
 		cout << setw(indent) 
-			<< ASCII::lines[(ASCII::VERTICAL << 4) | ASCII::VERTICAL];
+			<< ASCII::lines[ASCII::VERTICAL_DOUBLE];
 
 		for (size_t c = 0; c < nCols; c++) {
 			cout << (char)this->board[r][c];
 		}
-		cout << ASCII::lines[(ASCII::VERTICAL << 4) | ASCII::VERTICAL]
+		cout << ASCII::lines[ASCII::VERTICAL_DOUBLE]
 			<< endl;
 	}
 
-	cout << setfill(ASCII::lines[(ASCII::HORIZONTAL << 4) | ASCII::HORIZONTAL])
-		<< setw(indent) << ASCII::lines[(ASCII::UR << 4) | ASCII::UR]
+	cout << setfill(ASCII::lines[ASCII::HORIZONTAL_DOUBLE])
+		<< setw(indent) 
+		<< ASCII::lines[ASCII::UP_DOUBLE | ASCII::RIGHT_DOUBLE]
 		<< setw(nCols + 1)
-		<< ASCII::lines[(ASCII::UL << 4) | ASCII::UL] << endl;
+		<< ASCII::lines[ASCII::UP_DOUBLE | ASCII::LEFT_DOUBLE] << endl;
 	
 	// Restore the previous fill character
 	cout.fill(prevFillCh);
