@@ -31,7 +31,10 @@ public:
 	bool isMoveLeftValid() const;
 	bool isMoveBackValid() const;
 
-	void print() const;
+	void print();
+
+private:
+	void updateLines();
 
 protected:
 	FillBoard board;

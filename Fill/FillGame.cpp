@@ -194,8 +194,19 @@ coord_t FillGame::moveBack_Fast()
 	return temp;
 }
 
-void FillGame::print() const
+void FillGame::print()
 {
+	updateLines();
+
 	board.print();
+}
+
+void FillGame::updateLines()
+{
+	for (size_t i = 0; i < path.size(); i++) {
+		board.setSpaceAs(
+			path.getCoordinate(i),
+			(FillBoard::Space) path.getChar(i));
+	}
 }
 

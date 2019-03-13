@@ -6,12 +6,12 @@ bool FillGame_Test::full()
 
 	game.print();		system("pause");
 
-	game.moveUp();			game.print();		system("pause");
-	game.moveRight();		game.print();		system("pause");
-	game.moveDown();		game.print();		system("pause");
-	game.moveDown();		game.print();		system("pause");
-	game.moveDown();		game.print();		system("pause");
-	game.moveLeft();		game.print();		system("pause");
+	game.moveUp();					
+	game.moveRight();				
+	game.moveDown();				
+	game.moveDown();				
+	game.moveDown();				
+	game.moveLeft();				
 	game.moveLeft();
 	game.moveUp();
 	game.moveLeft();
@@ -21,6 +21,26 @@ bool FillGame_Test::full()
 	game.moveUp();
 	game.moveUp();
 	game.moveRight();
+	game.moveUp();
+	game.moveUp();
+	game.moveUp();
+	game.moveRight();
+	game.moveRight();
+	game.moveRight();
+	game.moveRight();
+	game.moveRight();
+	game.moveDown();
+	game.moveDown();
+	game.moveDown();
+	game.moveDown();
+	game.moveDown();
+	game.moveDown();
+	game.moveDown();
+	game.moveDown();
+	game.moveDown();
+	game.moveDown();
+	game.moveDown();
+
 
 	game.print();
 
