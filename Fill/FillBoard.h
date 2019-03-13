@@ -23,6 +23,7 @@ public:
 		DownRight = 0xDA,
 		UpLeft = 0xD9,
 		DownLeft = 0xBF,
+		Dot = 0xF9,
 	};
 	
 	FillBoard(size_t nRows = 5, size_t nCols = 5);

@@ -32,7 +32,7 @@ coord_t FillGame::moveUp()
 
 coord_t FillGame::moveDown() {
 	if (isMoveDownValid()) {
-		return moveUp_Fast();
+		return moveDown_Fast();
 	}
 	else {
 		return coord_t();
@@ -41,7 +41,7 @@ coord_t FillGame::moveDown() {
 
 coord_t FillGame::moveRight() {
 	if (isMoveRightValid()) {
-		return moveUp_Fast();
+		return moveRight_Fast();
 	}
 	else {
 		return coord_t();
@@ -50,7 +50,7 @@ coord_t FillGame::moveRight() {
 
 coord_t FillGame::moveLeft() {
 	if (isMoveLeftValid()) {
-		return moveUp_Fast();
+		return moveLeft_Fast();
 	}
 	else {
 		return coord_t();
@@ -59,7 +59,7 @@ coord_t FillGame::moveLeft() {
 
 coord_t FillGame::moveBack() {
 	if (isMoveBackValid()) {
-		return moveUp_Fast();
+		return moveBack_Fast();
 	}
 	else {
 		return coord_t();
@@ -153,9 +153,7 @@ coord_t FillGame::moveUp_Fast()
 {
 	coord_t temp = path.moveUp();
 
-	board.setSpaceAs(temp, (FillBoard::Space) path.getChar_back());
-
-	board.setSpaceAs(path.getCoordinate(path.size() - 2), (FillBoard::Space) path.getChar(path.size() - 2));
+	board.setSpaceAs(temp, FillBoard::Dot);
 
 	return temp;
 }
@@ -164,8 +162,7 @@ coord_t FillGame::moveDown_Fast()
 {
 	coord_t temp = path.moveDown();
 
-	board.setSpaceAs(temp, (FillBoard::Space) path.getChar_back());
-	board.setSpaceAs(path.getCoordinate(path.size() - 2), (FillBoard::Space) path.getChar(path.size() - 2));
+	board.setSpaceAs(temp, FillBoard::Dot);
 
 	return temp;
 }
@@ -174,8 +171,7 @@ coord_t FillGame::moveRight_Fast()
 {
 	coord_t temp = path.moveRight();
 
-	board.setSpaceAs(temp, (FillBoard::Space) path.getChar_back());
-	board.setSpaceAs(path.getCoordinate(path.size() - 2), (FillBoard::Space) path.getChar(path.size() - 2));
+	board.setSpaceAs(temp, FillBoard::Dot);
 
 	return temp;
 }
@@ -184,8 +180,7 @@ coord_t FillGame::moveLeft_Fast()
 {
 	coord_t temp = path.moveLeft();
 
-	board.setSpaceAs(temp, (FillBoard::Space) path.getChar_back());
-	board.setSpaceAs(path.getCoordinate(path.size() - 2), (FillBoard::Space) path.getChar(path.size() - 2));
+	board.setSpaceAs(temp, FillBoard::Dot);
 
 	return temp;
 }
