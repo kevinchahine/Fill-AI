@@ -4,7 +4,8 @@ bool FillGame_Test::full()
 {
 	FillGame game(FillBoard(8, 8), FillPath(coord_t(3, 3), 64));
 
-	game.print();		system("pause");
+	game.print();		
+	system("pause");
 
 	game.moveUp();					
 	game.moveRight();				
@@ -40,7 +41,6 @@ bool FillGame_Test::full()
 	game.moveDown();
 	game.moveDown();
 	game.moveDown();
-
 
 	game.print();
 
