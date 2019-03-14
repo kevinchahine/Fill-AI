@@ -189,7 +189,7 @@ coord_t FillGame::moveBack_Fast()
 {
 	coord_t temp = path.moveBack();
 
-	board.setSpaceAs(temp, (FillBoard::Space) path.getChar_back());
+	board.setSpaceAs(temp, FillBoard::Space::Empty);
 
 	return temp;
 }

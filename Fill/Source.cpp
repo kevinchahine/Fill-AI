@@ -19,7 +19,7 @@ int main(int argc, char ** argv)
 	///FillPath_Test::full();
 	///FillGame_Test::full();
 	
-	FillGame game(FillBoard(10, 10), FillPath(coord_t(3, 3), 100));
+	FillGame game(FillBoard(6, 6), FillPath(coord_t(0, 0), 100));
 
 	UserInterface interface;
 

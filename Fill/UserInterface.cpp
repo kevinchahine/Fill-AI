@@ -47,6 +47,9 @@ int UserInterface::simpleUpdate()
 		case 'd':
 			game.moveRight();
 			break;
+		case 'z':
+			game.moveBack();
+			break;
 		default:
 			cout << "Input not regocnized" << endl;
 			break;

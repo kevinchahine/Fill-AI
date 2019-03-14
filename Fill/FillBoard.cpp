@@ -97,7 +97,7 @@ bool FillBoard::isSolved() const
 	// Is every space filled (meaning no empty spaces)?
 	for (auto row : board) {
 		for (auto val : row) {
-			if (val != Space::Empty) {
+			if (val == Space::Empty) {
 				return false;
 			}
 		}
