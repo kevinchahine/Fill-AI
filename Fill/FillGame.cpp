@@ -199,6 +199,30 @@ void FillGame::placeObstacle(coord_t location)
 	board.setSpaceAs(location, FillBoard::Obstacle);
 }
 
+int FillGame::isSolved() const
+{
+	// If the game solved?
+	if (board.isSolved()) {
+		// Yes.
+		return 2;
+	}
+	else {
+		// No, the game is not solved
+		// But is it still winnable?
+		if (isMoveUpValid() || 
+			isMoveDownValid() || 
+			isMoveLeftValid() ||
+			isMoveRightValid()) {
+			// A Move is possible so maybe
+			return 1;
+		}
+		else {
+			// No, No moves are possible
+			return 0;
+		}
+	}
+}
+
 void FillGame::print()
 {
 	updateLines();

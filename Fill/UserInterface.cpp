@@ -22,7 +22,7 @@ const FillGame * UserInterface::getCurrentGamePtr() const
 	return currentGamePtr;
 }
 
-bool UserInterface::simpleUpdate()
+int UserInterface::simpleUpdate()
 {
 	if (currentGamePtr != nullptr) {
 		FillGame & game = *currentGamePtr;
@@ -51,11 +51,25 @@ bool UserInterface::simpleUpdate()
 			cout << "Input not regocnized" << endl;
 			break;
 		}
-		return true;
+
+		switch (game.isSolved()) {
+		case 2:
+			cout << "Hurry You Won!!!" << endl;
+			return 2;
+		case 1:
+			cout << "Play on" << endl;
+			return 1;
+		case 0:
+			cout << "Game Lost no moves will lead to a win" << endl;
+			return 0;
+		default:
+			cout << "Default case triggered" << endl;
+			return -1;
+		}
 	}
 	else {
 		cout << "Game object not set in User Interface" << endl;
 		
-		return false;
+		return 0;
 	}
 }

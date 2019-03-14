@@ -21,7 +21,13 @@ public:
 	FillGame * getCurrentGamePtr();
 	const FillGame * getCurrentGamePtr() const;
 
-	bool simpleUpdate();
+	/*
+		@return 
+		0 game over - game is not won, but no further moves will allow for a win
+		1 play on - further moves are possible, but game is not won
+		2 game won - game is solved
+	*/
+	int simpleUpdate();
 
 private:
 	FillGame * currentGamePtr;

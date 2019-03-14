@@ -33,6 +33,8 @@ public:
 
 	void placeObstacle(coord_t location);
 
+	int isSolved() const;
+
 	void print();
 
 private:
