@@ -194,6 +194,11 @@ coord_t FillGame::moveBack_Fast()
 	return temp;
 }
 
+void FillGame::placeObstacle(coord_t location)
+{
+	board.setSpaceAs(location, FillBoard::Obstacle);
+}
+
 void FillGame::print()
 {
 	updateLines();

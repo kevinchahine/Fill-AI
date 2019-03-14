@@ -16,7 +16,7 @@ public:
 	// Data Type of each space in the board
 	enum Space : uint8_t {
 		Empty = ' ',
-		Obstacle = 0xF9,
+		Obstacle = 0xB1,
 		Vertical = 0xB3,
 		Horizontal = 0xC4,
 		UpRight = 0xC0,

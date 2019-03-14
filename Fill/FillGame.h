@@ -31,6 +31,8 @@ public:
 	bool isMoveLeftValid() const;
 	bool isMoveBackValid() const;
 
+	void placeObstacle(coord_t location);
+
 	void print();
 
 private:
