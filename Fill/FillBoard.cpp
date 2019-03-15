@@ -127,6 +127,16 @@ void FillBoard::print(size_t indent) const
 			<< ASCII::lines[ASCII::VERTICAL_DOUBLE];
 
 		for (size_t c = 0; c < nCols; c++) {
+			char textColor = WHITE;
+			char backColor = (r % 2 == 0 || c % 2 == 0);
+
+			/*SetConsoleTextAttribute(
+				GetStdHandle(
+					STD_OUTPUT_HANDLE),
+				textColor + (backColor << 4));*/
+			// the 2nd argument represents the color of the text. 
+			// See above for numerical equivalace of colors
+
 			cout << (char)this->board[r][c];
 		}
 		cout << ASCII::lines[ASCII::VERTICAL_DOUBLE]
