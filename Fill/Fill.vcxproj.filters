@@ -42,6 +42,15 @@
     <ClCompile Include="UserInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FillSolver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.Test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="FillSolver.Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FillBoard.h">
@@ -67,6 +76,15 @@
     </ClInclude>
     <ClInclude Include="UserInterface.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FillSolver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface.Test.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="FillSolver.Test.h">
+      <Filter>Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

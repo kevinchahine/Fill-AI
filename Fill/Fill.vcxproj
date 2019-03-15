@@ -121,8 +121,11 @@
     <ClCompile Include="FillGame.Test.cpp" />
     <ClCompile Include="FillPath.cpp" />
     <ClCompile Include="FillPath.Test.cpp" />
+    <ClCompile Include="FillSolver.cpp" />
+    <ClCompile Include="FillSolver.Test.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="UserInterface.Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ASCII\ASCII\ASCII.h" />
@@ -132,7 +135,10 @@
     <ClInclude Include="FillGame.Test.h" />
     <ClInclude Include="FillPath.h" />
     <ClInclude Include="FillPath.Test.h" />
+    <ClInclude Include="FillSolver.h" />
+    <ClInclude Include="FillSolver.Test.h" />
     <ClInclude Include="UserInterface.h" />
+    <ClInclude Include="UserInterface.Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

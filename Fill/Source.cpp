@@ -8,8 +8,9 @@
 #include "UserInterface.h"
 
 #include "FillBoard.Test.h"
-#include "FillPath.Test.h"
 #include "FillGame.Test.h"
+#include "FillPath.Test.h"
+#include "FillSolver.Test.h"
 
 using namespace std;
 
@@ -18,16 +19,9 @@ int main(int argc, char ** argv)
 	///FillBoard_Test::init();
 	///FillPath_Test::full();
 	///FillGame_Test::full();
-	
-	FillGame game(FillBoard(6, 6), FillPath(coord_t(0, 0), 100));
+	///UserInterface_Test::full();
 
-	UserInterface interface;
-
-	interface.setCurrentGamePtr(&game);
-
-	while (interface.simpleUpdate()) {
-
-	}
+	FillSolver_Test::full();
 
 	system("pause");
 	return 0;
