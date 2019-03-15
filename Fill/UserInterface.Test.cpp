@@ -2,13 +2,13 @@
 
 void UserInterface_Test::full()
 {
-	FillGame game(FillBoard(6, 6), FillPath(coord_t(0, 0), 100));
+	FillGame game(FillBoard(6, 6), A::FillPath(coord_t(0, 0), 100));
 
-	UserInterface interface;
+	UserInterface interfacee;
 
-	interface.setCurrentGamePtr(&game);
+	interfacee.setCurrentGamePtr(&game);
 
-	while (interface.simpleUpdate() == 1) {
+	while (interfacee.simpleUpdate() == 1) {
 
 	}
 }

@@ -8,8 +8,8 @@
 class FillSolver : public FillGame
 {
 public:
-	FillSolver(const FillBoard & board, const FillPath & path);
-	FillSolver(const FillBoard && board, const FillPath && path);
+	FillSolver(const FillBoard & board, const A::FillPath & path);
+	FillSolver(const FillBoard && board, const A::FillPath && path);
 	FillSolver(const FillGame & fillGame);
 	
 	~FillSolver();

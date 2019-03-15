@@ -1,12 +1,12 @@
 #include "FillPath.h"
 
-FillPath::FillPath(coord_t start, size_t initialCapacity)
+A::FillPath::FillPath(coord_t start, size_t initialCapacity)
 {
 	path.reserve(initialCapacity);
 	path.push_back(start);
 }
 
-FillPath::FillPath(const vector<coord_t>& path)
+A::FillPath::FillPath(const vector<coord_t>& path)
 {
 	this->path.reserve(path.capacity());
 
@@ -15,7 +15,7 @@ FillPath::FillPath(const vector<coord_t>& path)
 	}
 }
 
-FillPath::FillPath(const FillPath & fillPath)
+A::FillPath::FillPath(const A::FillPath & fillPath)
 {
 	this->path.reserve(fillPath.path.capacity());
 
@@ -24,9 +24,9 @@ FillPath::FillPath(const FillPath & fillPath)
 	}
 }
 
-FillPath::~FillPath() {}
+A::FillPath::~FillPath() {}
 
-char FillPath::getChar(size_t pos) const
+char A::FillPath::getChar(size_t pos) const
 {
 	// ------------ Is this the 1st char? -----------------
 	if (pos == 0) {
@@ -93,27 +93,27 @@ char FillPath::getChar(size_t pos) const
 	}
 }
 
-char FillPath::getChar_back() const
+char A::FillPath::getChar_back() const
 {
 	return getChar(path.size() - 1);
 }
 
-const coord_t & FillPath::getCoordinate(size_t pos) const
+const coord_t & A::FillPath::getCoordinate(size_t pos) const
 {
 	return path.at(pos);
 }
 
-const coord_t & FillPath::getCoordinate_back() const
+const coord_t & A::FillPath::getCoordinate_back() const
 {
 	return path.back();
 }
 
-size_t FillPath::size() const
+size_t A::FillPath::size() const
 {
 	return path.size();
 }
 
-coord_t FillPath::moveUp()
+coord_t A::FillPath::moveUp()
 {
 	coord_t temp = path.back();
 	temp.first--;
@@ -123,7 +123,7 @@ coord_t FillPath::moveUp()
 	return temp;
 }
 
-coord_t FillPath::moveDown()
+coord_t A::FillPath::moveDown()
 {
 	coord_t temp = path.back();
 	temp.first++;
@@ -133,7 +133,7 @@ coord_t FillPath::moveDown()
 	return temp;
 }
 
-coord_t FillPath::moveRight()
+coord_t A::FillPath::moveRight()
 {
 	coord_t temp = path.back();
 	temp.second++;
@@ -143,7 +143,7 @@ coord_t FillPath::moveRight()
 	return temp;
 }
 
-coord_t FillPath::moveLeft()
+coord_t A::FillPath::moveLeft()
 {
 	coord_t temp = path.back();
 	temp.second--;
@@ -153,14 +153,14 @@ coord_t FillPath::moveLeft()
 	return temp;
 }
 
-coord_t FillPath::moveBack()
+coord_t A::FillPath::moveBack()
 {
 	coord_t temp = path.back();
 	path.pop_back();
 	return temp;
 }
 
-stringstream FillPath::toStream() const
+stringstream A::FillPath::toStream() const
 {
 	stringstream ss;
 
@@ -174,7 +174,7 @@ stringstream FillPath::toStream() const
 	return ss;
 }
 
-bool FillPath::isInPath(coord_t location) const
+bool A::FillPath::isInPath(coord_t location) const
 {
 	for (coord_t p : path) {
 		if (p == location) {

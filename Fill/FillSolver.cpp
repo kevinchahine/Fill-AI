@@ -1,9 +1,9 @@
 #include "FillSolver.h"
 
-FillSolver::FillSolver(const FillBoard & board, const FillPath & path) :
+FillSolver::FillSolver(const FillBoard & board, const A::FillPath & path) :
 	FillGame(board, path) {}
 
-FillSolver::FillSolver(const FillBoard && board, const FillPath && path) :
+FillSolver::FillSolver(const FillBoard && board, const A::FillPath && path) :
 	FillGame(board, path) {}
 
 FillSolver::FillSolver(const FillGame & fillGame) :

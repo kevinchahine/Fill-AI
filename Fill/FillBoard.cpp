@@ -108,6 +108,46 @@ bool FillBoard::isSolved() const
 
 void FillBoard::print(size_t indent) const
 {
+	// Take care of text color
+	HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO csbiInfo;
+	SMALL_RECT srctWindow;
+
+	// Get the current screen buffer size and window position. 
+
+	if (!GetConsoleScreenBufferInfo(hStdout, &csbiInfo))
+	{
+		printf("GetConsoleScreenBufferInfo (%d)\n", GetLastError());
+		return;
+	}
+
+	// Set srctWindow to the current window size and location. 
+
+	srctWindow = csbiInfo.srWindow;
+
+	// Check whether the window is too close to the screen buffer top
+	SHORT iRows = 100;
+	if (srctWindow.Top >= iRows)
+	{
+		srctWindow.Top -= (SHORT)iRows;     // move top up
+		srctWindow.Bottom -= (SHORT)iRows;  // move bottom up
+
+		if (!SetConsoleWindowInfo(
+			hStdout,          // screen buffer handle 
+			TRUE,             // absolute coordinates 
+			&srctWindow))     // specifies new location 
+		{
+			printf("SetConsoleWindowInfo (%d)\n", GetLastError());
+			return;
+		}
+		return;
+	}
+	else
+	{
+		printf("\nCannot scroll; the window is too close to the top.\n");
+		return;
+	}
+
 	// Remember the fill char (and set the new one at the same time)
 	char prevFillCh = cout.fill(ASCII::lines[ASCII::HORIZONTAL_DOUBLE]);
 	
@@ -126,14 +166,14 @@ void FillBoard::print(size_t indent) const
 		cout << setw(indent) 
 			<< ASCII::lines[ASCII::VERTICAL_DOUBLE];
 
+
 		for (size_t c = 0; c < nCols; c++) {
 			char textColor = WHITE;
-			char backColor = (r % 2 == 0 || c % 2 == 0);
+			char backColor = ((r + c) % 2 == 0);
 
-			/*SetConsoleTextAttribute(
-				GetStdHandle(
-					STD_OUTPUT_HANDLE),
-				textColor + (backColor << 4));*/
+			SetConsoleTextAttribute(
+				GetStdHandle(STD_OUTPUT_HANDLE),
+				textColor + (backColor << 4));
 			// the 2nd argument represents the color of the text. 
 			// See above for numerical equivalace of colors
 
