@@ -2,7 +2,7 @@
 
 void UserInterface_Test::full()
 {
-	FillGame game(FillBoard(6, 6), A::FillPath(coord_t(0, 0), 100));
+	FillGame game(FillBoard(6, 6), FillRoute(coord_t(0, 0), 100));
 
 	UserInterface interfacee;
 

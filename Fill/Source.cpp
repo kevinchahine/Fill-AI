@@ -24,15 +24,6 @@ int main(int argc, char ** argv)
 
 	FillSolver_Test::full();
 	
-	/*HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-
-	for (int i = 0; i < 16; i++) {
-		uint8_t color = ((i << 4) | 15);
-
-		SetConsoleTextAttribute(console, color);
-		cout << "color " << i << endl;
-	}*/
-
 	system("pause");
 	return 0;
 }

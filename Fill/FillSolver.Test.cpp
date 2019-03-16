@@ -2,7 +2,7 @@
 
 void FillSolver_Test::full()
 {
-	FillSolver solver(FillBoard(5, 5), A::FillPath(coord_t(2, 2), 25));
+	FillSolver solver(FillBoard(5, 5), FillRoute(coord_t(2, 2), 25));
 
 	solver.solve();
 }

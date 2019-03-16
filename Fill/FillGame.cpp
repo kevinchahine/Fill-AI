@@ -1,12 +1,12 @@
 #include "FillGame.h"
 
-FillGame::FillGame(const FillBoard & board, const A::FillPath & path) :
+FillGame::FillGame(const FillBoard & board, const FillRoute & path) :
 	board(board),
 	path(path)
 {
 }
 
-FillGame::FillGame(const FillBoard && board, const A::FillPath && path) :
+FillGame::FillGame(const FillBoard && board, const FillRoute && path) :
 	board(board),
 	path(path)
 {

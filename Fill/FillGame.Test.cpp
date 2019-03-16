@@ -2,7 +2,7 @@
 
 bool FillGame_Test::full()
 {
-	FillGame game(FillBoard(8, 8), A::FillPath(coord_t(3, 3), 64));
+	FillGame game(FillBoard(8, 8), FillRoute(coord_t(3, 3), 64));
 
 	game.placeObstacle(coord_t(2, 3));
 	game.placeObstacle(coord_t(3, 4));

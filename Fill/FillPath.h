@@ -12,14 +12,13 @@ using namespace std;
 
 typedef pair<size_t, size_t> coord_t;
 
-namespace A {
-	class FillPath
+class FillRoute
 	{
 	public:
-		FillPath(coord_t start, size_t initialCapacity = 16);
-		FillPath(const vector<coord_t> & path);
-		FillPath(const A::FillPath & fillPath);
-		~FillPath();
+		FillRoute(coord_t start, size_t initialCapacity = 16);
+		FillRoute(const vector<coord_t> & path);
+		FillRoute(const FillRoute & fillPath);
+		~FillRoute();
 
 		char getChar(size_t pos) const;
 		char getChar_back() const;
@@ -43,4 +42,3 @@ namespace A {
 		// pair<row, col>
 		vector<coord_t> path;
 	};
-}
