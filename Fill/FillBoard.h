@@ -65,6 +65,10 @@ public:
 	void print(size_t indent = 0) const;
 
 protected:
+	void setColor(HANDLE console, uint8_t color) const;
+	bool getColor(uint8_t & color) const;
+
+protected:
 	vector<vector<Space>> board;
 };
 
