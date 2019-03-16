@@ -10,4 +10,6 @@ namespace FillSolver_Test {
 	void _50x50_grid();
 
 	void _NxM_grid(int n, int m);
+
+	bool deadEnds();
 }
