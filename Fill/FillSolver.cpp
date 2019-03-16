@@ -18,31 +18,39 @@ void FillSolver::solve()
 
 void FillSolver::solve1()
 {
+	print();
+
 	// 'u' - up
 	// 'd' - down
 	// 'r' - right
 	// 'l' - left
 	// 'b' - back
-	stack<char> fringe;
+	vector<char> fringe;
+	fringe.reserve(4 * board.getNCols() * board.getNRows());
+
 	if (isMoveUpValid()) {
-		fringe.push('u');
+		fringe.push_back('u');
 	}
 	if (isMoveDownValid()) {
-		fringe.push('d');
+		fringe.push_back('d');
 	}
 	if (isMoveRightValid()) {
-		fringe.push('r');
+		fringe.push_back('r');
 	}
 	if (isMoveLeftValid()) {
-		fringe.push('l');
+		fringe.push_back('l');
 	}
+
+	int nSolutions = 0;
+
+	clock_t startTime = clock();
 
 	while (!fringe.empty()) {
 		//print();
 		//system("pause");
 
-		char node = fringe.top();
-		fringe.pop();
+		char node = fringe.back();
+		fringe.pop_back();
 
 		switch (node) {
 		case 'u':
@@ -68,37 +76,48 @@ void FillSolver::solve1()
 			break;
 		}
 
-		if (path.size() == 25) {
-			print();
-			system("pause");
+		if (path.size() == board.getNCols() * board.getNRows()) {
+			nSolutions++;
+			cout << '.';
+			if (nSolutions % 30 == 0) {
+				cout << '\n';
+			}
+			if (nSolutions < 3) 
+				print();
+			//system("pause");
 		}
-		if (path.size() > 25) {
+		if (path.size() > board.getNCols() * board.getNRows()) {
 			cout << "\t\t-------" << endl;
 		}
-		if (board.isSolved()) {
+		/*if (board.isSolved()) {
 			cout << "Solved" << endl;
 			print();
 			system("pause");
 			break;
-		}
+		}*/
 
 		if (isMoveBackValid()) {
-			fringe.push('b');
+			fringe.push_back('b');
 		}
 		if (isMoveUpValid()) {
-			fringe.push('u');
+			fringe.push_back('u');
 		}
 		if (isMoveDownValid()) {
-			fringe.push('d');
+			fringe.push_back('d');
 		}
 		if (isMoveRightValid()) {
-			fringe.push('r');
+			fringe.push_back('r');
 		}
 		if (isMoveLeftValid()) {
-			fringe.push('l');
+			fringe.push_back('l');
 		}
 	}
 
+	clock_t endTime = clock();
+
+	cout << "# solutions found = " << nSolutions << endl;
+	cout << "time elapsed = " << (endTime - startTime) / 1000.0f << "mSec" << endl;
 	cout << "Loop broken" << endl;
+
 	print();
 }

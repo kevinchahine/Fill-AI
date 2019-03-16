@@ -49,7 +49,7 @@
       <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="FillSolver.Test.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

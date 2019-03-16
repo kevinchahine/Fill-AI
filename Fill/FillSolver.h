@@ -1,9 +1,12 @@
 #pragma once
 
+#include <time.h>
 #include <stack>
 
 #include "FillBoard.h"
 #include "FillGame.h"
+
+using namespace std;
 
 class FillSolver : public FillGame
 {

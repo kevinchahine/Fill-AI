@@ -22,7 +22,12 @@ int main(int argc, char ** argv)
 	///FillGame_Test::full();
 	///UserInterface_Test::full();
 
-	FillSolver_Test::full();
+	///FillSolver_Test::full();	// <--- !!! Might me empty
+	FillSolver_Test::_NxM_grid(5, 5);
+	FillSolver_Test::_NxM_grid(6, 6);
+	FillSolver_Test::_NxM_grid(7, 7);
+	FillSolver_Test::_NxM_grid(8, 8);
+
 	
 	system("pause");
 	return 0;
