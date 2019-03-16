@@ -13,7 +13,8 @@ FillSolver::~FillSolver() {}
 
 void FillSolver::solve()
 {
-	solve1();
+	///solve1();
+	solve2();
 }
 
 void FillSolver::solve1()
@@ -124,6 +125,8 @@ void FillSolver::solve1()
 
 void FillSolver::solve2()
 {
+	print();
+
 	const size_t nCells = board.getNCols() * board.getNRows();
 
 	// 'u' - up
@@ -135,18 +138,21 @@ void FillSolver::solve2()
 	fringe.reserve(4 * nCells);
 
 	// 1.) Initialize fringe
-	if (isMoveUpValid()) {
+	if (isMoveUpValid() && !forwardChecking('u')) {
 		fringe.push_back('u');
 	}
-	if (isMoveDownValid()) {
+	if (isMoveDownValid() && !forwardChecking('d')) {
 		fringe.push_back('d');
 	}
-	if (isMoveRightValid()) {
+	if (isMoveRightValid() && !forwardChecking('r')) {
 		fringe.push_back('r');
 	}
-	if (isMoveLeftValid()) {
+	if (isMoveLeftValid() && !forwardChecking('l')) {
 		fringe.push_back('l');
 	}
+
+	clock_t startTime = clock();
+	int nSolutionsFound = 0;
 
 	// 2.) Search
 	while (!fringe.empty()) {
@@ -168,31 +174,68 @@ void FillSolver::solve2()
 		}
 
 		// 2-2.) Test for a solution
-		// ...
-		
-		// 2-4.) Apply Forward Checking
-
-
+		if (path.size() >= nCells) {
+			nSolutionsFound++;
+			//cout << '.';
+			/*if (nSolutionsFound % 60 == 0) {
+				cout << endl;
+			}*/
+			
+			///print();
+		}
+	
 		// 2-3.) Push next possile moves to fringe
 		if (isMoveBackValid()) {
 			fringe.push_back('b');
 		}
-		if (isMoveUpValid()) {
+		if (isMoveUpValid() && !forwardChecking('u')) {
 			fringe.push_back('u');
 		}
-		if (isMoveDownValid()) {
+		if (isMoveDownValid() && !forwardChecking('d')) {
 			fringe.push_back('d');
 		}
-		if (isMoveRightValid()) {
+		if (isMoveRightValid() && !forwardChecking('r')) {
 			fringe.push_back('r');
 		}
-		if (isMoveLeftValid()) {
+		if (isMoveLeftValid() && !forwardChecking('l')) {
 			fringe.push_back('l');
 		}
-
-
-
 	} // end while (...
+
+	clock_t endTime = clock();
+
+	cout << nSolutionsFound << " solutions found" << endl
+		<< "in " << (endTime - startTime) << " mSec" << endl;
+}
+
+bool FillSolver::forwardChecking(char move)
+{
+	switch (move) {
+	case 'u':
+		moveUp();
+		break;
+	case 'd':
+		moveDown();
+		break;
+	case 'r':
+		moveRight();
+		break;
+	case 'l':
+		moveLeft();
+		break;
+	case 'b':
+		cerr << "Error:" << __FILE__ << " line " << __LINE__ << endl
+			<< "Should not test moveing back in forward checking" << endl;
+		return false;
+	default:
+		cerr << "Error:" << __FILE__ << " line " << __LINE__ << endl;
+	}
+
+	bool fc = deadEnds();
+
+	moveBack();
+
+	return fc;
 }
 
 bool FillSolver::deadEnds() const

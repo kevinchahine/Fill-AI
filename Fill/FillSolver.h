@@ -33,7 +33,7 @@ private:
 	void solve3();
 
 	// ============ Forward Checking ======================
-	bool forwardChecking();
+	bool forwardChecking(char move);
 
 	// Returns true if it finds 2 or more deadends in the board
 	// False otherwise
