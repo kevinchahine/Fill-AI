@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <Windows.h>
 
 #include "FillBoard.h"
 #include "FillGame.h"
@@ -22,7 +23,7 @@ int main(int argc, char ** argv)
 	///UserInterface_Test::full();
 
 	FillSolver_Test::full();
-
+	
 	system("pause");
 	return 0;
 }

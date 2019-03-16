@@ -7,16 +7,16 @@ bool FillPath_Test::init()
 	p.push_back(coord_t(5, 7));
 	p.push_back(coord_t(4, 7));
 
-	FillPath path(coord_t(4, 4));
-	FillPath pathFull(p);
-	FillPath pathCopy(path);
+	 FillRoute path(coord_t(4, 4));
+	 FillRoute pathFull(p);
+	 FillRoute pathCopy(path);
 
 	return true;
 }
 
 bool FillPath_Test::move()
 {
-	FillPath path(coord_t(3, 3));
+	FillRoute path(coord_t(3, 3));
 
 	path.moveDown();
 	path.moveRight();

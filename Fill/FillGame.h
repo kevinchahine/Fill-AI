@@ -8,8 +8,8 @@ using namespace std;
 class FillGame
 {
 public:
-	FillGame(const FillBoard & board, const FillPath & path);
-	FillGame(const FillBoard && board, const FillPath && path);
+	FillGame(const FillBoard & board, const FillRoute & path);
+	FillGame(const FillBoard && board, const FillRoute && path);
 	FillGame(const FillGame & fillGame);
 	~FillGame();
 
@@ -42,6 +42,6 @@ private:
 
 protected:
 	FillBoard board;
-	FillPath path;
+	FillRoute path;
 };
 

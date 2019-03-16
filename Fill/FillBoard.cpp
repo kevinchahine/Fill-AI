@@ -108,6 +108,9 @@ bool FillBoard::isSolved() const
 
 void FillBoard::print(size_t indent) const
 {
+	// Take care of text color
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	
 	// Remember the fill char (and set the new one at the same time)
 	char prevFillCh = cout.fill(ASCII::lines[ASCII::HORIZONTAL_DOUBLE]);
 	
@@ -126,9 +129,24 @@ void FillBoard::print(size_t indent) const
 		cout << setw(indent) 
 			<< ASCII::lines[ASCII::VERTICAL_DOUBLE];
 
+		// Remember the current text color
+		uint8_t prevColor;
+		getColor(prevColor);
+		
 		for (size_t c = 0; c < nCols; c++) {
+			char textColor = WHITE;
+			char backColor = (((r + c) % 2 == 0) ? 3 : 9);
+
+			setColor(console, textColor + (backColor << 4));
+			// the 2nd argument represents the color of the text. 
+			// See above for numerical equivalace of colors
+
 			cout << (char)this->board[r][c];
 		}
+
+		// Reassign the original text color
+		setColor(console, prevColor);
+
 		cout << ASCII::lines[ASCII::VERTICAL_DOUBLE]
 			<< endl;
 	}
@@ -142,3 +160,24 @@ void FillBoard::print(size_t indent) const
 	// Restore the previous fill character
 	cout.fill(prevFillCh);
 }
+
+void FillBoard::setColor(HANDLE console, uint8_t color) const
+{
+	SetConsoleTextAttribute(console, color);
+}
+
+bool FillBoard::getColor(uint8_t & color) const
+{
+	CONSOLE_SCREEN_BUFFER_INFO info;
+
+	if (!GetConsoleScreenBufferInfo(
+		GetStdHandle(STD_OUTPUT_HANDLE),
+		&info)) {
+		return false;
+	}
+
+	color = info.wAttributes;
+
+	return true;
+}
+

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <Windows.h>
 
 #include "FillPath.h"
 
@@ -12,6 +13,25 @@ using namespace std;
 
 class FillBoard
 {
+private:
+	const char	BLACK = 0;
+	const char	BLUE = 1;
+	const char	GREEN = 2;
+	const char	CYAN = 3;
+	const char	RED = 4;
+	const char	MAGENTA = 5;
+	const char	BROWN = 6;
+	const char	LIGHTGREY = 7;
+	const char	DARKGREY = 8;
+	const char	LIGHTBLUE = 9;
+	const char	LIGHTGREEN = 10;
+	const char	LIGHTCYAN = 11;
+	const char	LIGHTRED = 12;
+	const char	LIGHTMAGENTA = 13;
+	const char	YELLOW = 14;
+	const char	WHITE = 15;
+	const char	BLINK = 128;
+
 public:
 	// Data Type of each space in the board
 	enum Space : uint8_t {
@@ -43,6 +63,10 @@ public:
 	bool isSolved() const;
 
 	void print(size_t indent = 0) const;
+
+protected:
+	void setColor(HANDLE console, uint8_t color) const;
+	bool getColor(uint8_t & color) const;
 
 protected:
 	vector<vector<Space>> board;
