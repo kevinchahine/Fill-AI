@@ -311,3 +311,51 @@ bool FillSolver::deadEnds() const
 	// Therefore this path may possibly create a solution
 	return false;
 }
+
+bool FillSolver::partitions() const
+{
+	// value means cell is empty and has not been assigned
+	const uint16_t UNASSIGNED_CELL = UINT16_MAX;
+
+	// value means cell is occupied by a line or obstacle
+	
+	const uint16_t OCCUPIED_CELL = UINT16_MAX - 1;
+	// 1.) Create a copy of the board so that 
+	//		we don't mess it up
+	const size_t N_ROWS = board.getNRows();
+	const size_t N_COLS = board.getNCols();
+
+	vector<vector<uint16_t>> b;
+	b.resize(N_ROWS);
+	for (size_t r = 0; r < N_ROWS; r++) {
+		b[r].resize(N_COLS, UNASSIGNED_CELL);
+	}
+	
+	// 2.) Fill cells that are occupied with lines or obstacles
+	for (size_t r = 0; r < N_ROWS; r++) {
+		for (size_t c = 0; c < N_COLS; c++) {
+			// Is cell r, c occupied?
+			if (board.getSpace(coord_t(r, c)) != FillBoard::Space::Empty) {
+				// Yes it is occupied, 
+				//	then set the corresponding element in b to occupied
+				b[r][c] = OCCUPIED_CELL;
+			}
+		}
+	}
+	// 2.) Now all cells in b is a reflection of board.
+	//		All cells in board that are filled are filled in b.
+
+	// 3.) Create vector that will keep track of the partitions.
+
+	vector<vector<size_t>> partitions;
+	// Expect to have no more than 8 partitions.
+	// As long as we keep track of our partitions, we should
+	//  rarely have more than 2 or 3.
+	partitions.reserve(8);	
+
+	// 4.) !!!!!!!!!!!!!! THE HARD PART !!!!!!!!!!!!!!
+	//		!!!!!!!!!!!! THE PARTITION ALGORITHM !!!!
+
+
+	return false;
+}
