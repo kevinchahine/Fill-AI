@@ -1,0 +1,23 @@
+1 - 6x6: FC dead ends only with partition overhead
+	12088 solutions found
+	in 69883 mSec
+
+2 - 6x6: FC dead ends only
+	12088 solutions found
+	in 22094 mSec
+
+3 - 6x6: FC dead ends and partition
+	12088 solutions found
+	in 113270 mSec
+
+4 - 6x6: No FC simply brute force search
+	12088 solutions found
+	in 182948 mSec
+
+Analysis:
+2 Fastest
+1 is 3.162 times longer than 2
+3 is 5.127 times longer than 2
+4 is 8.280 times longer than 2
+
+

@@ -5,6 +5,7 @@
 
 #include "FillBoard.h"
 #include "FillGame.h"
+#include "Partition.h"
 
 using namespace std;
 
@@ -33,6 +34,8 @@ private:
 	void solve3();
 
 	// ============ Forward Checking ======================
+	// Returns true if we made a bad move and need to back track
+	// Returns false otherwise
 	bool forwardChecking(char move);
 
 	// Returns true if it finds 2 or more deadends in the board

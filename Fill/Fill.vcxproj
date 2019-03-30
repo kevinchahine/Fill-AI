@@ -124,7 +124,6 @@
     <ClCompile Include="FillSolver.cpp" />
     <ClCompile Include="FillSolver.Test.cpp" />
     <ClCompile Include="Partition.cpp" />
-    <ClCompile Include="Partition.Test.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="UserInterface.Test.cpp" />
@@ -142,9 +141,6 @@
     <ClInclude Include="Partition.h" />
     <ClInclude Include="UserInterface.h" />
     <ClInclude Include="UserInterface.Test.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Partition.Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

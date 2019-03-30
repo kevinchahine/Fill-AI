@@ -176,11 +176,14 @@ void FillSolver::solve2()
 		// 2-2.) Test for a solution
 		if (path.size() >= nCells) {
 			nSolutionsFound++;
-			//cout << '.';
-			/*if (nSolutionsFound % 60 == 0) {
+			if (nSolutionsFound % 1000 == 0) {
+				cout << nSolutionsFound << '\n';
+			}
+			/*cout << '.';
+			if (nSolutionsFound % 60 == 0) {
 				cout << endl;
-			}*/
-			
+			}
+			*/
 			///print();
 		}
 	
@@ -205,11 +208,13 @@ void FillSolver::solve2()
 	clock_t endTime = clock();
 
 	cout << nSolutionsFound << " solutions found" << endl
-		<< "in " << (endTime - startTime) << " mSec" << endl;
+		<< "in " << (endTime - startTime) / 1000.0f << " sec" << endl;
 }
 
 bool FillSolver::forwardChecking(char move)
 {
+	return false;	// no FC
+
 	switch (move) {
 	case 'u':
 		moveUp();
@@ -231,7 +236,10 @@ bool FillSolver::forwardChecking(char move)
 		cerr << "Error:" << __FILE__ << " line " << __LINE__ << endl;
 	}
 
-	bool fc = deadEnds();
+	bool deadEndsFC = deadEnds();
+	bool partitionFC = partitions();
+
+	bool fc = deadEndsFC && partitionFC;
 
 	moveBack();
 
@@ -347,10 +355,7 @@ bool FillSolver::partitions() const
 
 	// 3.) Create vector that will keep track of the partitions.
 	
-	// Contains all the subPartitions
-	// subPartitions[val] -> partition
-	vector<uint16_t> subPartitions;
-
+	Partition p;
 	// ex: 
 	// +-------------------+	Actual Partitions:
 	// |     000           |	0 - contains 0
@@ -370,46 +375,71 @@ bool FillSolver::partitions() const
 	// Expect to have no more than 8 partitions.
 	// As long as we keep track of our partitions, we should
 	//  rarely have more than 2 or 3.
-	subPartitions.reserve(8);
-
-	// 4.) Find the partitions
+	
+	// 4.) Find the sub partitions
 	for (size_t r = 0; r < N_ROWS; r++) {
 		for (size_t c = 0; c < N_COLS; c++) {
-			if (b[r][c] == UNASSIGNED_CELL) {
-				// 4-1.) See if there is an assigned cell near by
-				
-				// Is cell above in a partition?
-				if (r - 1 > 0 && b[r - 1][c] < UNASSIGNED_CELL) {
-					// Yes, the above cell is in a partition
-					//	Then this cell should also be in 
-					//  that same partition.
-					b[r][c] = b[r - 1][c];
+			// 4-1.) Evaluate the status of the cell (b[r][c])
 
-					// How about the cell to the left?
-					// Is it in the same partition or a different one?
-					if (c - 1 > 0 && b[r][c - 1] < UNASSIGNED_CELL) {
-						if (b[r][c - 1] != b[r][c]) {
-							// It is in a different partition
-							// That means both partitions are actually 
-							// the same, because ther're connected
-							///partition.at()
+			if (b[r][c] == UNASSIGNED_CELL) {
+				// See if there is cell assigned to a sub partition 
+				// nearby. Only need to test ABOVE and to the LEFT
+				
+				// Is the ABOVE cell assigned to a sub partition? 
+				if (r != 0 && b[r - 1][c] < UNASSIGNED_CELL) {
+					// Yes, the ABOVE cell is assigned to a sub
+					// partition
+					//	Then THIS cell should also be in 
+					//  the ABOVE cells sub partition.
+					const size_t aboveSubPar = b[r - 1][c];
+					b[r][c] = aboveSubPar;
+
+					// Is the LEFT cell assigned to a sub partition?
+					if (c != 0 && b[r][c - 1] < UNASSIGNED_CELL) {
+						// Yes, both ABOVE AND LEFT cells are assigned
+						// to sub partitions.
+						// How about this question, are they in the 
+						// !!!SAME!!! sub partition?
+						
+						const size_t leftSubPar = b[r][c - 1];
+						if (aboveSubPar != leftSubPar) {
+							// Oh no their in different sub partitions.
+							// Since the two sub partitions are touching,
+							// we need to merge them.
+							p.mergePartitions(aboveSubPar, leftSubPar);
 						}
 					}
 				}
-				// Is cell to the left in a partition?
-				else if (c - 1 > 0 && b[r][c - 1] < UNASSIGNED_CELL) {
-					// Yes, the cell to the left is in a partition
-					//  Then this cell should also be in
-					//  that same partition.
-					b[r][c] = b[r][c - 1];
-				}
+				// Is the ABOVE cell assigned to a sub partition? 
 				else {
-					// Neither the cell above or to the left of this
-					// cell are in a partition. Then lets see if 
+					// No the ABOVE cell is not assigned to a sub partition.
+					
+					// Then is the LEFT cell assigned to a sub partition?
+					if (c != 0 && b[r][c - 1] < UNASSIGNED_CELL) {
+						// Yes, the LEFT cell is in a partition
+						//	Then THIS cell should also be in 
+						//  the LEFT cells sub partition.
+						const size_t leftSubPar = b[r][c - 1];
+						b[r][c] = leftSubPar;
+					}
+					else {
+						// Nope, neither the ABOVE NOR THE LEFT cells
+						// are assigned to sub partitions.
+						// So we must assign a new sub partition to 
+						// this cell
+						size_t newSub = p.getNSubPartitions();
+						b[r][c] = newSub;
+						p.addNewSubPartition(newSub, newSub);
+					}
 				}
 			}
 		}
 	}
 
-	return false;
+	// 5.) Now we need to count and make sure we only have a single
+	//	partition. Any more than 1 partition means we have cells that
+	//  we cannot connect :(
+	const size_t nPartitions = p.getNPartitions();
+
+	return nPartitions > 1;
 }
