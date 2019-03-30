@@ -39,9 +39,10 @@ private:
 	// False otherwise
 	bool deadEnds() const;
 
-	// Returns true if it finds a divide in the board
-	// False otherwise
-	bool isThereADivide() const;
+	// Returns true if it finds 2 or more partitions in
+	// the board
+	// false otherwise
+	bool partitions() const;
 
 private:
 

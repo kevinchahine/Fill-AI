@@ -315,11 +315,11 @@ bool FillSolver::deadEnds() const
 bool FillSolver::partitions() const
 {
 	// value means cell is empty and has not been assigned
-	const uint16_t UNASSIGNED_CELL = UINT16_MAX;
+	const uint16_t UNASSIGNED_CELL = UINT16_MAX - 1;
 
 	// value means cell is occupied by a line or obstacle
 	
-	const uint16_t OCCUPIED_CELL = UINT16_MAX - 1;
+	const uint16_t OCCUPIED_CELL = UINT16_MAX;
 	// 1.) Create a copy of the board so that 
 	//		we don't mess it up
 	const size_t N_ROWS = board.getNRows();
@@ -346,16 +346,70 @@ bool FillSolver::partitions() const
 	//		All cells in board that are filled are filled in b.
 
 	// 3.) Create vector that will keep track of the partitions.
+	
+	// Contains all the subPartitions
+	// subPartitions[val] -> partition
+	vector<uint16_t> subPartitions;
 
-	vector<vector<size_t>> partitions;
+	// ex: 
+	// +-------------------+	Actual Partitions:
+	// |     000           |	0 - contains 0
+	// |11                 |	1 - 1s, 2s, 3s and 4s
+	// |1111111222222333333|	2 - 5s
+	// |111144444          |
+	// |            555    |
+	// +-------------------+
+	//
+	// subPartitions[0] = 0	// The 0s on the board belong to partition 0
+	// subPartitions[1] = 1 // The 1s on the board belong to partition 1
+	// subPartitions[2] = 1 // The 2s on the board belong to partition 1
+	// subPartitions[3] = 1 // The 3s on the board belong to partition 1
+	// subPartitions[4] = 1 // The 4s on the board belong to partition 1
+	// subPartitions[5] = 2 // The 5s on the board belong to partition 2
+	//
 	// Expect to have no more than 8 partitions.
 	// As long as we keep track of our partitions, we should
 	//  rarely have more than 2 or 3.
-	partitions.reserve(8);	
+	subPartitions.reserve(8);
 
-	// 4.) !!!!!!!!!!!!!! THE HARD PART !!!!!!!!!!!!!!
-	//		!!!!!!!!!!!! THE PARTITION ALGORITHM !!!!
+	// 4.) Find the partitions
+	for (size_t r = 0; r < N_ROWS; r++) {
+		for (size_t c = 0; c < N_COLS; c++) {
+			if (b[r][c] == UNASSIGNED_CELL) {
+				// 4-1.) See if there is an assigned cell near by
+				
+				// Is cell above in a partition?
+				if (r - 1 > 0 && b[r - 1][c] < UNASSIGNED_CELL) {
+					// Yes, the above cell is in a partition
+					//	Then this cell should also be in 
+					//  that same partition.
+					b[r][c] = b[r - 1][c];
 
+					// How about the cell to the left?
+					// Is it in the same partition or a different one?
+					if (c - 1 > 0 && b[r][c - 1] < UNASSIGNED_CELL) {
+						if (b[r][c - 1] != b[r][c]) {
+							// It is in a different partition
+							// That means both partitions are actually 
+							// the same, because ther're connected
+							///partition.at()
+						}
+					}
+				}
+				// Is cell to the left in a partition?
+				else if (c - 1 > 0 && b[r][c - 1] < UNASSIGNED_CELL) {
+					// Yes, the cell to the left is in a partition
+					//  Then this cell should also be in
+					//  that same partition.
+					b[r][c] = b[r][c - 1];
+				}
+				else {
+					// Neither the cell above or to the left of this
+					// cell are in a partition. Then lets see if 
+				}
+			}
+		}
+	}
 
 	return false;
 }
