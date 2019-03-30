@@ -12,6 +12,7 @@
 #include "FillGame.Test.h"
 #include "FillPath.Test.h"
 #include "FillSolver.Test.h"
+#include "Partition.Test.h"
 
 using namespace std;
 
@@ -29,6 +30,11 @@ int main(int argc, char ** argv)
 	///FillSolver_Test::_NxM_grid(8, 8);
 
 	///FillSolver_Test::deadEnds();
+	
+	///Partition_Test::addSubPartitions();
+	///Partition_Test::mergePartitions();
+	///Partition_Test::getNPartitions();
+	///Partition_Test::getNSubPartitions();
 	
 	system("pause");
 	return 0;
